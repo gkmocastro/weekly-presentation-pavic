@@ -297,40 +297,183 @@ Entre os métodos de correção guiada, ainda destacam-se:
 
 \end{frame}
 
+\section{Atividades e Metas}
 
 \begin{frame}{Resumo das atividades}
-    \begin{itemize}
-        \item Foco na escrita do documento de qualificação
-        \item Dúvidas em relação ao experimento
-        \item Problemas em relação aos dados
-        \item Nova técnica para depth inpainting com fusão tardia (Paint by Example)
-        \item Foi investigada a possibilidade de utilizar transformers
-        \item Iniciou um estudo mais aprofundado de modelos de difusão
-    \end{itemize}
+
+    \begin{block} {Documento de qualificação}
+
+        \begin{itemize}
+            \item Introdução - 60\%
+            \item Trabalhos relacionados - 80\%
+            \item Problemática - 30\%
+            \item Justificativa e Motivação - 0\%
+            \item Objetivos - 80\%
+            \item Trabalhos Relacionados - 80\%
+            \item Referencial Teórico - 0\%
+            \item Metodologia - 0\%
+            \item Cronograma - 0\%
+            \item Resultados Preliminares - 0\% 
+            \item Considerações Finais - 0\%
+        \end{itemize}
+        
+    \end{block}
 \end{frame}
+
+
+\begin{frame}{Resumo das atividades}
+
+    \begin{block} {Experimento}
+
+        \begin{itemize}
+            \item Adaptação do código do guided diffusion para lidar com os meus dados (100\%)
+            \item Ajustes nos métodos de pré processamento (Normalização, remoção de NaN e depth transformation) (60\%)
+            \item Solução de problemas do treinamento (100\%)
+            \item Código para adaptar as máscaras de teste a partir do Repaint (100\%)
+            \item Adaptação do código do Repaint para rodar com os meus dados (80\%)
+            \item Estudo dos parâmetros do Repaint para novo treinamento (50\%)
+        \end{itemize}
+        
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Resumo das atividades}
+    \begin{example}{Parâmetros de treinamento}
+        \begin{itemize}
+            
+        
+        \item \texttt{MODEL\_FLAGS="--image\_size 64 --num\_channels 128 --num\_res\_blocks 3"}
+        \item \texttt{DIFFUSION\_FLAGS="--diffusion\_steps 1000 --noise\_schedule linear"}
+        \item \texttt{TRAIN\_FLAGS="--lr 1e-4 --batch\_size 1"}   
+        \end{itemize} 
+    \end{example}
+\end{frame}
+
+
+\begin{frame}{Resumo das atividades}
+
+    \begin{block}{Estudo teórico}
+        \begin{itemize}
+            \item Estudo de papers apresentados na reunião anterior
+            \item Estudo de papers relacionados a reconstrução condicionada com modelos de difusão
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Papers estudados}
+    \begin{itemize}
+        \item 2024 - Seyfioglu et al. - Diffuse to Choose Enriching Image Conditioned Inpainting in Latent Diffusion Models for Virtual Try-All.pdf
+        \item 2023 - Zhu et al. - Designing a Better Asymmetric VQGAN for StableDiffusion.pdf
+        \item 2023 - Yang, Chen - Uni-paint A Unified Framework for Multimodal Image Inpainting with Pretrained Diffusion Model.pdf
+        \item 2023 - Wang et al. - Towards Stable and Faithful Inpainting.pdf
+        \item 2023 - Lim, Kim - Image Guided Inpainting with Parameter Efficient Learning.pdf
+        \item 2022 - Yang, Sun - Paint by Example Exemplar-based Image Editing with Diffusion Models.pdf
+    \end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{figs/paintbyexample.png}
+        \caption{Arquitetura: Paint by Example Exemplar-based Image Editing with Diffusion Models}
+    \end{figure}   
+\end{frame}
+
+\begin{frame}
+
+    \begin{figure}
+        \centering
+        \includegraphics[scale=.2]{figs/diffusetochoose.png}
+        \caption{Arquitetura: Diffuse to Choose Enriching Image Conditioned Inpainting in Latent Diffusion Models for Virtual Try-All}
+    \end{figure}   
+\end{frame}
+
+
+\begin{frame}
+\begin{figure}
+    \centering
+    \includegraphics[scale=.3]{figs/faithfulinpainting.png}
+    \caption{Arquitetura: Towards Stable and Faithful Inpainting}
+\end{figure}   
+\end{frame}
+
+
+\begin{frame}{Insights}
+    \begin{example}
+        \begin{itemize}
+            \item A reconstrução guiada de mapas de profundidade com late fusion (ou deep fusion) não será possível utilizando modelos de difusão convencionais
+            \item Os papers que abordam esse tipo de reconstrução utilizam \textbf{Stable Diffusion} ou \textbf{Latent Diffusion}
+            \item O escopo da qualificação se limitará à reconstrução com \textbf{Guided diffusion}+Repaint e comparação com métodos estimadores de profundidade
+            \item Praticamente não há código que possa ser utilizado diretamente para reconstrução guiada, mas há boas fontes para construção de projeto próprio
+        \end{itemize}
+    \end{example}
+
+\end{frame}
+
+
+\begin{frame}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{figs/stableinpainting.png}
+        \caption{Esquema para inpainting utilizando stable diffusion}
+    \end{figure}   
+\end{frame}
+
+
+\begin{frame}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{figs/inpaintingrepo.png}
+        \caption{Repositório: Stable Diffusion Inpainting}
+    \end{figure}   
+\end{frame}
+
 
 \begin{frame}{Metas}
     \begin{block}{Curto prazo}
 
 \begin{itemize}
-    \item Escrever documento de qualificação: Introdução, trabalhos relacionados, problemática, metodologia, cronograma
-    \item Treinar o Lama para reconstruir mapas de profundidade com o dataset Hypersim
-    \item Montar o laboratório de métricas para reconstrução
+    \item Escrever documento de qualificação: Ajustes na Introdução e objetivos (Em Andamento)
+    \item Adaptar o código do RePaint para lidar com meus dados (80\%)
+    \item Montar o laboratório de métricas para reconstrução 
+    \item Codificação do projeto completo para rodar em máquina remota
+    \item Treinamento em máquina remota com parâmetros melhores
 \end{itemize}
 
 
 \end{block}
 
-    \begin{block}{Médio prazo}
-\begin{itemize}
-    \item Treinar o guided diffusion (Repaint) para construir mapas de profundidade
-    \item Codar o experimento do paint by example
-    \item Estudar o encoder CLIP com o objetivo de modifica-lo
-    \end{itemize}
-\end{block}
+
 
 \end{frame}
 
+
+\begin{frame}{Metas}
+    \begin{block}{Médio prazo}
+        \begin{itemize}
+            \item Avaliação e documentação de experimentos
+            \item Realizar teste com estimadores de profundidade para comparação
+            \item Realizar testes com o LaMa (pedir opiniões)
+            \item Implementar método baseline (provavelmente morfológico)
+            \end{itemize}
+        \end{block}
+\end{frame}
+
+
+\begin{frame}{Metas}
+    \begin{block}{Longo Prazo}
+        \begin{itemize}
+        \item Versão preliminar do documento de qualificação
+        \item Escrita de texto científico (artigo ou capítulo)
+    \end{itemize}
+    \end{block}
+\end{frame}
 %---------------------------------------------------------
 
 
